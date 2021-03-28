@@ -1,8 +1,8 @@
-import net from 'net'
+import net, { Server } from 'net'
 import Logger from '@bwatton/logger'
 import BinaryStream from './utils/BinaryStream'
 
-const socket: net.Server = net.createServer()
+const socket: Server = net.createServer()
 const logger: Logger = new Logger('Server')
 
 socket.on('data', async (message: Buffer) => {
