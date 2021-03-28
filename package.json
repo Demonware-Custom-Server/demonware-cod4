@@ -1,0 +1,11 @@
+{
+  "name": "cod4-server",
+  "version": "1.0.0",
+  "description": "A server to replicate demonware for Call of Duty 4",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "DelxHQ",
+  "license": "ISC"
+}
