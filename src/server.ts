@@ -1,33 +1,18 @@
-import dgram from 'dgram'
 import net from 'net'
 import Logger from '@bwatton/logger'
+import BinaryStream from './utils/BinaryStream'
 
-const socket = dgram.createSocket('udp4')
-const tcpSocket = net.createServer()
-
+const socket: net.Server = net.createServer()
 const logger: Logger = new Logger('Server')
 
+socket.on('data', async (message: Buffer) => {
+  const stream = new BinaryStream(message)
 
-socket.on('listening', () => {
-  const address = socket.address()
-  logger.debug(`Demonware listening on ${address.address}:${address.port}`)
-});
-
-socket.on('connect', client => {
-  logger.debug('New connection from ' + client)
+  const packetId: number = stream.buffer[0]
 })
 
-socket.on('message', async (message, sInfo) => {
-  logger.debug(`Recieved message from ${sInfo.address}:${sInfo.port}\nMessage: ${message}`)
-})
-
-tcpSocket.on('data', data => {
-  logger.debug(`Got data ${data}`)
-})
-
-tcpSocket.on('connection', socket => {
+socket.on('connection', socket => {
   logger.debug(`Got connection from ${socket.remoteAddress}:${socket.remotePort}`)
 })
 
-socket.bind(3074)
-tcpSocket.listen(3074, () => logger.debug('TCP socket running on 3074'))
+socket.listen(3074, () => logger.debug('Demonware socket running on 3074'))
