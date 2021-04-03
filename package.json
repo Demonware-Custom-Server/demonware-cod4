@@ -16,6 +16,7 @@
     "typescript": "^4.2.3"
   },
   "dependencies": {
-    "@bwatton/logger": "^1.0.6"
+    "@bwatton/logger": "^1.0.6",
+    "bit-buffer": "^0.2.5"
   }
 }
